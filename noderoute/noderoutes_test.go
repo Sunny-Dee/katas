@@ -20,7 +20,7 @@ func TestFindRoutes(t *testing.T) {
 	}
 	c = Node{
 		Data:     3,
-		Children: []*Node{&d},
+		Children: []*Node{&c, &d},
 	}
 	d = Node{
 		Data:     4,

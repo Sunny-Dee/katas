@@ -8,6 +8,7 @@ import (
 type Node struct {
 	Data     int
 	Children []*Node
+	Visited  bool
 }
 
 // FindRoute finds if there is a route between two nodes
@@ -19,10 +20,13 @@ func FindRoute(a, b *Node) bool {
 	for stck.Len() > 0 {
 		curr = stck.Pop().(*Node)
 		for _, child := range curr.Children {
-			if child.Data == b.Data {
-				return true
+			if !child.Visited {
+				if child.Data == b.Data {
+					return true
+				}
+				child.Visited = true
+				stck.Push(child)
 			}
-			stck.Push(child)
 		}
 	}
 
